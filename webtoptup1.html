@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameTopUp Giyas&Rendy - Top Up Game Mudah & Cepat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #9333ea, #2563eb);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .logo-text {
+            font-weight: bold;
+            font-size: 1.25rem;
+            background: linear-gradient(135deg, #9333ea, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .search-box {
+            display: none;
+            flex: 1;
+            max-width: 28rem;
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #9333ea;
+            box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: #9333ea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #7e22ce;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #f3f4f6;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #9333ea, #2563eb);
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+
+        /* Features */
+        .features {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 28px;
+        }
+
+        .feature-icon.purple { background: #f3e8ff; }
+        .feature-icon.blue { background: #dbeafe; }
+        .feature-icon.green { background: #dcfce7; }
+        .feature-icon.orange { background: #fed7aa; }
+
+        /* Games Grid */
+        .games-section {
+            padding: 3rem 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.875rem;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .game-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+        .game-card-image {
+            position: relative;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+
+        .game-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .game-card:hover .game-card-image img {
+            transform: scale(1.1);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: #ef4444;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .game-card-content {
+            padding: 1rem;
+        }
+
+        .game-card-content h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .game-card-content p {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        /* Game Detail Page */
+        .detail-page {
+            padding: 2rem 0;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6b7280;
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            color: #111827;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .game-header-image {
+            width: 100%;
+            height: 256px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+            margin: -1.5rem -1.5rem 1rem -1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #9333ea;
+            box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+        }
+
+        .info-box {
+            background: #dbeafe;
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 1rem;
+            font-size: 0.875rem;
+            color: #1e40af;
+        }
+
+        .denominations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .denom-card {
+            position: relative;
+            padding: 1rem;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .denom-card:hover {
+            border-color: #c084fc;
+        }
+
+        .denom-card.selected {
+            border-color: #9333ea;
+            background: #faf5ff;
+        }
+
+        .denom-card .check-icon {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            width: 20px;
+            height: 20px;
+            background: #9333ea;
+            border-radius: 50%;
+            color: white;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .denom-card.selected .check-icon {
+            display: flex;
+        }
+
+        .denom-discount {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            background: #ef4444;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        .denom-amount {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .denom-bonus {
+            color: #059669;
+            font-size: 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .denom-price {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .order-summary {
+            position: sticky;
+            top: 80px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .summary-total {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 0.75rem;
+            margin-top: 0.75rem;
+        }
+
+        .total-price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #9333ea;
+        }
+
+        .btn-block {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            justify-content: center;
+        }
+
+        .btn:disabled {
+            background: #d1d5db;
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .payment-method:hover {
+            border-color: #c084fc;
+        }
+
+        .payment-method.selected {
+            border-color: #9333ea;
+            background: #faf5ff;
+        }
+
+        .payment-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        /* Success Page */
+        .success-page {
+            padding: 3rem 0;
+        }
+
+        .success-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #dcfce7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 48px;
+            color: #059669;
+        }
+
+        .success-card h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-detail {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            color: #9ca3af;
+        }
+
+        /* Hidden class */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .search-box {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                position: static;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .games-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo" onclick="showHome(); return false;">
+                    <div class="logo-icon">🎮</div>
+                    <span class="logo-text">GameTopUp</span>
+                </a>
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Cari game favoritmu...">
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        👤 <span class="hidden md:inline">Masuk</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="homePage">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+                <div style="max-width: 48rem;">
+                    <h1>Top Up Game Mudah & Cepat</h1>
+                    <p>Proses otomatis, harga terjangkau, dan dukungan 24/7. Top up game favoritmu sekarang!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon purple">⚡</div>
+                        <h3>Proses Instan</h3>
+                        <p>Top up langsung masuk</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon blue">🛡️</div>
+                        <h3>100% Aman</h3>
+                        <p>Transaksi terjamin</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon green">🕐</div>
+                        <h3>Layanan DiJam Tertentu</h3>
+                        <p>Buka kalau engga males</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon orange">🎧</div>
+                        <h3>Support Cepat</h3>
+                        <p>Tim siap membantu</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Games -->
+        <section class="games-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Game Populer</h2>
+                    <button class="btn btn-secondary">Lihat Semua</button>
+                </div>
+                <div class="games-grid" id="gamesGrid"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <p>© 2026 GameTopUp. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Game Detail Page -->
+    <div id="detailPage" class="hidden">
+        <div class="container detail-page">
+            <a href="#" class="back-button" onclick="showHome(); return false;">
+                ← Kembali
+            </a>
+
+            <div class="detail-grid">
+                <div>
+                    <!-- Game Info -->
+                    <div class="card">
+                        <img id="detailGameImage" src="" alt="" class="game-header-image">
+                        <h1 id="detailGameName"></h1>
+                        <p id="detailGameCategory" style="color: #6b7280;"></p>
+                    </div>
+
+                    <!-- User Input -->
+                    <div class="card">
+                        <h2>Masukkan Data</h2>
+                        <div class="form-group">
+                            <label>User ID / Player ID</label>
+                            <input type="text" id="userId" placeholder="Masukkan User ID">
+                        </div>
+                        <div class="form-group" id="serverIdGroup" style="display:none;">
+                            <label>Server ID</label>
+                            <input type="text" id="serverId" placeholder="Masukkan Server ID">
+                        </div>
+                        <div class="info-box">
+                            💡 Pastikan User ID dan Server ID sudah benar agar top up dapat masuk ke akun kamu
+                        </div>
+                    </div>
+
+                    <!-- Denominations -->
+                    <div class="card">
+                        <h2>Pilih Nominal</h2>
+                        <div class="denominations-grid" id="denominationsGrid"></div>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div>
+                    <div class="card order-summary">
+                        <h2>Ringkasan Pesanan</h2>
+                        <div class="summary-row">
+                            <span style="color: #6b7280;">Game</span>
+                            <span id="summaryGame"></span>
+                        </div>
+                        <div class="summary-row">
+                            <span style="color: #6b7280;">User ID</span>
+                            <span id="summaryUserId">-</span>
+                        </div>
+                        <div class="summary-row" id="summaryDenomRow" style="display:none;">
+                            <span style="color: #6b7280;">Nominal</span>
+                            <span id="summaryDenom"></span>
+                        </div>
+                        <div class="summary-total" id="summaryTotalRow" style="display:none;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Total</span>
+                                <span class="total-price" id="summaryTotal"></span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block" id="checkoutBtn" disabled onclick="goToCheckout()">
+                            Lanjut Pembayaran
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Page -->
+    <div id="checkoutPage" class="hidden">
+        <div class="container detail-page">
+            <a href="#" class="back-button" onclick="backToDetail(); return false;">
+                ← Kembali
+            </a>
+
+            <div class="detail-grid">
+                <div>
+                    <!-- Contact Info -->
+                    <div class="card">
+                        <h2>Informasi Kontak</h2>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="email" placeholder="email@example.com">
+                            <p style="font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem;">
+                                Bukti pembayaran akan dikirim ke email
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label>WhatsApp</label>
+                            <input type="tel" id="whatsapp" placeholder="08xxxxxxxxxx">
+                            <p style="font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem;">
+                                Notifikasi akan dikirim via WhatsApp
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="card">
+                        <h2>Metode Pembayaran</h2>
+                        <div class="payment-methods" id="paymentMethods"></div>
+                    </div>
+                </div>
+
+                <!-- Order Detail -->
+                <div>
+                    <div class="card order-summary">
+                        <h2>Detail Pesanan</h2>
+                        <div class="summary-row">
+                            <span style="color: #6b7280;">Game</span>
+                            <span id="checkoutGame"></span>
+                        </div>
+                        <div class="summary-row">
+                            <span style="color: #6b7280;">User ID</span>
+                            <span id="checkoutUserId"></span>
+                        </div>
+                        <div class="summary-row" id="checkoutServerRow" style="display:none;">
+                            <span style="color: #6b7280;">Server ID</span>
+                            <span id="checkoutServerId"></span>
+                        </div>
+                        <div class="summary-row">
+                            <span style="color: #6b7280;">Nominal</span>
+                            <span id="checkoutDenom"></span>
+                        </div>
+                        <div style="border-top: 1px solid #e5e7eb; padding-top: 0.75rem; margin-top: 0.75rem;">
+                            <div class="summary-row">
+                                <span style="color: #6b7280;">Harga</span>
+                                <span id="checkoutPrice"></span>
+                            </div>
+                            <div class="summary-row" id="checkoutFeeRow" style="display:none;">
+                                <span style="color: #6b7280;">Biaya Admin</span>
+                                <span id="checkoutFee"></span>
+                            </div>
+                            <div class="summary-total">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Total</span>
+                                    <span class="total-price" id="checkoutTotal"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block" id="payBtn" disabled onclick="processPayment()">
+                            Bayar Sekarang
+                        </button>
+                        <p style="font-size: 0.75rem; color: #6b7280; text-align: center; margin-top: 0.75rem;">
+                            Dengan melanjutkan, Anda menyetujui syarat dan ketentuan kami
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Page -->
+    <div id="successPage" class="hidden">
+        <div class="container success-page">
+            <div class="success-card">
+                <div class="success-icon">✓</div>
+                <h1>Pembayaran Berhasil!</h1>
+                <p style="color: #6b7280; margin-bottom: 2rem;">
+                    Terima kasih telah melakukan top up di GameTopUp
+                </p>
+
+                <div class="success-detail">
+                    <h2 style="font-size: 1rem; margin-bottom: 1rem;">Detail Transaksi</h2>
+                    <div class="summary-row">
+                        <span style="color: #6b7280;">Game</span>
+                        <span id="successGame"></span>
+                    </div>
+                    <div class="summary-row">
+                        <span style="color: #6b7280;">User ID</span>
+                        <span id="successUserId"></span>
+                    </div>
+                    <div class="summary-row">
+                        <span style="color: #6b7280;">Nominal</span>
+                        <span id="successDenom"></span>
+                    </div>
+                    <div class="summary-total">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Total Pembayaran</span>
+                            <span class="total-price" id="successTotal"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-bottom: 1.5rem;">
+                    ⏱️ Top up akan diproses dalam 1-5 menit. Pastikan Anda sudah memasukkan User ID yang benar.
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" style="flex: 1;" onclick="showHome()">
+                        🏠 Kembali ke Beranda
+                    </button>
+                    <button class="btn btn-secondary" style="flex: 1; border: 2px solid #9333ea; color: #9333ea;">
+                        💬 Hubungi CS
+                    </button>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; text-align: center; color: #6b7280; font-size: 0.875rem;">
+                <p>Butuh bantuan? Hubungi customer service kami melalui WhatsApp atau email</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        const games = [
+            {
+                id: "mobile-legends",
+                name: "Mobile Legends",
+                img src: "ap_resize.png",
+                category: "MOBA",
+                popular: true,
+                discount: 10
+            },
+            {
+                id: "free-fire",
+                name: "Free Fire",
+                img src: "hwz9nqv1br-1769062904.webp",
+                category: "Battle Royale",
+                popular: true
+            },
+            {
+                id: "pubg-mobile",
+                name: "PUBG Mobile",
+                img src: "knpecbcury1obxhkqkvc.jpg",
+                category: "Battle Royale",
+                popular: true
+            },
+            {
+                id: "valorant",
+                name: "Valorant",
+                img src: "Valorant_Logo-700x700.png",
+                category: "FPS",
+                popular: true,
+                discount: 5
+            },
+            {
+                id: "genshin-impact",
+                name: "Genshin Impact",
+                img src: "static-assets-upload5572281619834024916.webp",
+                category: "RPG",
+                popular: true
+            },
+            {
+                id: "clash-of-clans",
+                name: "Clash of Clans",
+                img src: "Clash of Clans Logo.jpeg",
+                category: "Strategy",
+                popular: false
+            }
+        ];
+
+        const denominations = {
+            "mobile-legends": [
+                { id: "ml-1", amount: "86 Diamonds", price: 20000, bonus: "+4 Bonus" },
+                { id: "ml-2", amount: "172 Diamonds", price: 40000, bonus: "+8 Bonus" },
+                { id: "ml-3", amount: "257 Diamonds", price: 60000, bonus: "+12 Bonus", discount: 5 },
+                { id: "ml-4", amount: "344 Diamonds", price: 80000, bonus: "+16 Bonus" },
+                { id: "ml-5", amount: "429 Diamonds", price: 100000, bonus: "+20 Bonus" },
+                { id: "ml-6", amount: "878 Diamonds", price: 200000, bonus: "+50 Bonus", discount: 10 }
+            ],
+            "free-fire": [
+                { id: "ff-1", amount: "50 Diamonds", price: 7000 },
+                { id: "ff-2", amount: "100 Diamonds", price: 14000, bonus: "+10 Bonus" },
+                { id: "ff-3", amount: "310 Diamonds", price: 40000, bonus: "+31 Bonus" },
+                { id: "ff-4", amount: "520 Diamonds", price: 70000, bonus: "+52 Bonus", discount: 5 },
+                { id: "ff-5", amount: "1060 Diamonds", price: 140000, bonus: "+106 Bonus" },
+                { id: "ff-6", amount: "2180 Diamonds", price: 280000, bonus: "+218 Bonus", discount: 10 }
+            ],
+            "pubg-mobile": [
+                { id: "pm-1", amount: "60 UC", price: 15000 },
+                { id: "pm-2", amount: "325 UC", price: 75000, bonus: "+25 Bonus" },
+                { id: "pm-3", amount: "660 UC", price: 150000, bonus: "+60 Bonus" },
+                { id: "pm-4", amount: "1800 UC", price: 400000, bonus: "+200 Bonus", discount: 5 },
+                { id: "pm-5", amount: "3850 UC", price: 800000, bonus: "+450 Bonus", discount: 10 }
+            ],
+            "valorant": [
+                { id: "val-1", amount: "475 VP", price: 50000 },
+                { id: "val-2", amount: "1000 VP", price: 100000, bonus: "+50 Bonus" },
+                { id: "val-3", amount: "2050 VP", price: 200000, bonus: "+150 Bonus" },
+                { id: "val-4", amount: "3650 VP", price: 350000, bonus: "+350 Bonus", discount: 5 },
+                { id: "val-5", amount: "5350 VP", price: 500000, bonus: "+600 Bonus", discount: 10 }
+            ],
+            "genshin-impact": [
+                { id: "gi-1", amount: "60 Genesis Crystals", price: 15000 },
+                { id: "gi-2", amount: "330 Genesis Crystals", price: 75000, bonus: "+30 Bonus" },
+                { id: "gi-3", amount: "1090 Genesis Crystals", price: 250000, bonus: "+110 Bonus" },
+                { id: "gi-4", amount: "2240 Genesis Crystals", price: 500000, bonus: "+260 Bonus", discount: 5 },
+                { id: "gi-5", amount: "3880 Genesis Crystals", price: 850000, bonus: "+500 Bonus", discount: 10 }
+            ],
+            "clash-of-clans": [
+                { id: "coc-1", amount: "80 Gems", price: 15000 },
+                { id: "coc-2", amount: "500 Gems", price: 75000, bonus: "+50 Bonus" },
+                { id: "coc-3", amount: "1200 Gems", price: 150000, bonus: "+120 Bonus" },
+                { id: "coc-4", amount: "2500 Gems", price: 300000, bonus: "+300 Bonus", discount: 5 },
+                { id: "coc-5", amount: "6500 Gems", price: 750000, bonus: "+800 Bonus", discount: 10 }
+            ]
+        };
+
+        const paymentMethods = [
+            { id: "gopay", name: "GoPay", icon: "💳", fee: 0 },
+            { id: "ovo", name: "OVO", icon: "💳", fee: 0 },
+            { id: "dana", name: "DANA", icon: "💳", fee: 0 },
+            { id: "bank", name: "Transfer Bank", icon: "🏦", fee: 0 },
+            { id: "alfamart", name: "Alfamart", icon: "🏪", fee: 2500 },
+            { id: "indomaret", name: "Indomaret", icon: "🏪", fee: 2500 }
+        ];
+
+        // State
+        let currentGame = null;
+        let selectedDenom = null;
+        let selectedPayment = null;
+
+        // Initialize
+        function init() {
+            renderGames();
+        }
+
+        // Render games
+        function renderGames() {
+            const grid = document.getElementById('gamesGrid');
+            grid.innerHTML = games.map(game => `
+                <a href="#" class="game-card" onclick="showGameDetail('${game.id}'); return false;">
+                    <div class="game-card-image">
+                        <img src="${game.image}" alt="${game.name}">
+                        ${game.discount ? `<div class="discount-badge">🏷️ ${game.discount}% OFF</div>` : ''}
+                    </div>
+                    <div class="game-card-content">
+                        <h3>${game.name}</h3>
+                        <p>${game.category}</p>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        // Show game detail
+        function showGameDetail(gameId) {
+            currentGame = games.find(g => g.id === gameId);
+            if (!currentGame) return;
+
+            document.getElementById('homePage').classList.add('hidden');
+            document.getElementById('detailPage').classList.remove('hidden');
+            document.getElementById('checkoutPage').classList.add('hidden');
+            document.getElementById('successPage').classList.add('hidden');
+
+            // Reset
+            selectedDenom = null;
+            document.getElementById('userId').value = '';
+            document.getElementById('serverId').value = '';
+
+            // Update UI
+            document.getElementById('detailGameImage').src = currentGame.image;
+            document.getElementById('detailGameName').textContent = currentGame.name;
+            document.getElementById('detailGameCategory').textContent = currentGame.category;
+            document.getElementById('summaryGame').textContent = currentGame.name;
+
+            // Show server ID for Mobile Legends
+            const serverIdGroup = document.getElementById('serverIdGroup');
+            serverIdGroup.style.display = gameId === 'mobile-legends' ? 'block' : 'none';
+
+            // Render denominations
+            const denomsGrid = document.getElementById('denominationsGrid');
+            const gameDenoms = denominations[gameId] || [];
+            denomsGrid.innerHTML = gameDenoms.map(denom => `
+                <div class="denom-card" onclick="selectDenom('${denom.id}')">
+                    ${denom.discount ? `<div class="denom-discount">${denom.discount}% OFF</div>` : ''}
+                    <div class="check-icon">✓</div>
+                    <div class="denom-amount">${denom.amount}</div>
+                    ${denom.bonus ? `<div class="denom-bonus">${denom.bonus}</div>` : ''}
+                    <div class="denom-price">Rp ${denom.price.toLocaleString('id-ID')}</div>
+                </div>
+            `).join('');
+
+            updateDetailSummary();
+            window.scrollTo(0, 0);
+        }
+
+        // Select denomination
+        function selectDenom(denomId) {
+            const gameDenoms = denominations[currentGame.id] || [];
+            selectedDenom = gameDenoms.find(d => d.id === denomId);
+
+            // Update UI
+            document.querySelectorAll('.denom-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+
+            updateDetailSummary();
+        }
+
+        // Update detail summary
+        function updateDetailSummary() {
+            const userId = document.getElementById('userId').value;
+            document.getElementById('summaryUserId').textContent = userId || '-';
+
+            if (selectedDenom) {
+                document.getElementById('summaryDenomRow').style.display = 'flex';
+                document.getElementById('summaryTotalRow').style.display = 'block';
+                document.getElementById('summaryDenom').textContent = selectedDenom.amount;
+                document.getElementById('summaryTotal').textContent = 
+                    `Rp ${selectedDenom.price.toLocaleString('id-ID')}`;
+            } else {
+                document.getElementById('summaryDenomRow').style.display = 'none';
+                document.getElementById('summaryTotalRow').style.display = 'none';
+            }
+
+            // Enable/disable checkout button
+            const canCheckout = userId && selectedDenom;
+            document.getElementById('checkoutBtn').disabled = !canCheckout;
+        }
+
+        // Listen to user input
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('userId')?.addEventListener('input', updateDetailSummary);
+            document.getElementById('email')?.addEventListener('input', updateCheckoutButton);
+            document.getElementById('whatsapp')?.addEventListener('input', updateCheckoutButton);
+        });
+
+        // Go to checkout
+        function goToCheckout() {
+            const userId = document.getElementById('userId').value;
+            const serverId = document.getElementById('serverId').value;
+
+            if (!userId || !selectedDenom) return;
+
+            document.getElementById('detailPage').classList.add('hidden');
+            document.getElementById('checkoutPage').classList.remove('hidden');
+
+            // Reset
+            selectedPayment = null;
+            document.getElementById('email').value = '';
+            document.getElementById('whatsapp').value = '';
+
+            // Update checkout summary
+            document.getElementById('checkoutGame').textContent = currentGame.name;
+            document.getElementById('checkoutUserId').textContent = userId;
+            document.getElementById('checkoutDenom').textContent = selectedDenom.amount;
+            document.getElementById('checkoutPrice').textContent = 
+                `Rp ${selectedDenom.price.toLocaleString('id-ID')}`;
+
+            if (serverId) {
+                document.getElementById('checkoutServerRow').style.display = 'flex';
+                document.getElementById('checkoutServerId').textContent = serverId;
+            } else {
+                document.getElementById('checkoutServerRow').style.display = 'none';
+            }
+
+            // Render payment methods
+            const paymentMethodsDiv = document.getElementById('paymentMethods');
+            paymentMethodsDiv.innerHTML = paymentMethods.map(method => `
+                <div class="payment-method" onclick="selectPayment('${method.id}')">
+                    <div class="payment-info">
+                        <div class="payment-icon">${method.icon}</div>
+                        <div>
+                            <div style="font-weight: 600;">${method.name}</div>
+                            ${method.fee > 0 ? `<div style="font-size: 0.75rem; color: #6b7280;">
+                                Biaya admin: Rp ${method.fee.toLocaleString('id-ID')}
+                            </div>` : ''}
+                        </div>
+                    </div>
+                    <div class="check-icon" style="position: static; width: 24px; height: 24px;">✓</div>
+                </div>
+            `).join('');
+
+            updateCheckoutTotal();
+            updateCheckoutButton();
+            window.scrollTo(0, 0);
+        }
+
+        // Select payment
+        function selectPayment(paymentId) {
+            selectedPayment = paymentMethods.find(p => p.id === paymentId);
+
+            // Update UI
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+
+            updateCheckoutTotal();
+            updateCheckoutButton();
+        }
+
+        // Update checkout total
+        function updateCheckoutTotal() {
+            if (selectedPayment && selectedPayment.fee > 0) {
+                document.getElementById('checkoutFeeRow').style.display = 'flex';
+                document.getElementById('checkoutFee').textContent = 
+                    `Rp ${selectedPayment.fee.toLocaleString('id-ID')}`;
+            } else {
+                document.getElementById('checkoutFeeRow').style.display = 'none';
+            }
+
+            const total = selectedDenom.price + (selectedPayment?.fee || 0);
+            document.getElementById('checkoutTotal').textContent = 
+                `Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        // Update checkout button
+        function updateCheckoutButton() {
+            const email = document.getElementById('email').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const canProceed = selectedPayment && email && whatsapp;
+            document.getElementById('payBtn').disabled = !canProceed;
+        }
+
+        // Process payment
+        function processPayment() {
+            const email = document.getElementById('email').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+
+            if (!selectedPayment || !email || !whatsapp) return;
+
+            const userId = document.getElementById('userId').value;
+            const total = selectedDenom.price + (selectedPayment?.fee || 0);
+
+            // Show success page
+            document.getElementById('checkoutPage').classList.add('hidden');
+            document.getElementById('successPage').classList.remove('hidden');
+
+            // Update success summary
+            document.getElementById('successGame').textContent = currentGame.name;
+            document.getElementById('successUserId').textContent = userId;
+            document.getElementById('successDenom').textContent = selectedDenom.amount;
+            document.getElementById('successTotal').textContent = 
+                `Rp ${total.toLocaleString('id-ID')}`;
+
+            window.scrollTo(0, 0);
+        }
+
+        // Back to detail
+        function backToDetail() {
+            document.getElementById('checkoutPage').classList.add('hidden');
+            document.getElementById('detailPage').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // Show home
+        function showHome() {
+            document.getElementById('homePage').classList.remove('hidden');
+            document.getElementById('detailPage').classList.add('hidden');
+            document.getElementById('checkoutPage').classList.add('hidden');
+            document.getElementById('successPage').classList.add('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // Init on load
+        init();
+    </script>
+</body>
+</html>
